@@ -1,21 +1,79 @@
 $font-stack: 'Ubuntu', sans-serif;
 $primary-color: #C52233;
+$secondary-color: #262626;
+$text-color: #F0FFFF;
 
 body {
   font: 100% $font-stack;
+  background-color: $secondary-color;
+  color: $text_color;
+}
+
+::selection {
+  background: $primary-color;
 }
 
 nav {
   background-color: $primary-color;
-}
+  height: 70px;
+  font-size: 1.25em;
+  margin-bottom: 100px;
 
-nav {
   a.navbar-brand {
-    font-size: 1.5em;
+    font-size: 2em;
     color: black;
+    margin-left: 115px;
+    font-weight: bold;
   }
 }
 
-#test {
-  color: orange;
+#corner-logo {
+  position: fixed;
+  z-index: 500;
+  left: -60px;
+  top: -60px;
+  width: 175px;
+  height: 175px;
+  transform: rotate(80deg);
 }
+
+.btn-coordinate{
+  height: 200px;
+  font-size: 4em;
+  font-weight: bold;
+  color: $text-color;
+}
+
+.btn-coordinate:hover {
+  background-color: rgba(209, 209, 209, 0.3);
+}
+
+.btn-coordinate:active, .btn-coordinate:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem $primary-color;
+}
+
+.dropdown-menu {
+  //background-color: rgba(209, 209, 209, 0.6);
+  width: 100%;
+  font-size: 3em;
+  background: transparent;
+  border: none;
+
+}
+
+.dropdown-item {
+    text-align: center;
+    color: $text_color;
+    font-size: 1em;
+}
+
+.dropdown-item:hover {
+  background-color: $primary-color;
+}
+
+.dropdown-item:active {
+  background-color: $primary-color;
+}
+
+

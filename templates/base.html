@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <!-- <title>{% block title %}{% endblock %} - Reduktor</title> -->
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+    <title>{% block title %}{% endblock %} - Reduktor</title>
     <!--Bootstrap CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -23,15 +22,16 @@
           rel="stylesheet">
 
     <!-- My styles -->
-    <!-- <link href="../static/styles/main.css" rel="stylesheet"> -->
-    {{ url_for("static/styles", filename="main.css") }}
+    <link href="{{ url_for("static", filename="styles/main.css") }}" rel="stylesheet">
 </head>
 
 <body>
 <!-- NAVBAR -->
+<img src="{{ url_for('static', filename='img/brand.png') }}" id="corner-logo" alt="brand image">
+
+
 <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="#">
-        <img src="{{ url_for('static/img', filename='brand.png') }}">
         REDUKTOR
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -40,33 +40,21 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
+        <ul class="navbar-nav ml-auto">
+            <a class="nav-link {{ 'active' if active_page == "koordinatni" else '' }}"
+               href="{{ url_for("prelasci.index") }}">
+                Koordinatni sistemi </a>
+            <a class="nav-link {{ 'active' if active_page == "koodrinatni2" else '' }}"
+               href="{{ url_for("prelasci.index2") }}">
+                Koordinatni sistemi 2</a>
         </ul>
+
     </div>
 </nav>
+{% block header %} {% endblock %}
 
-<div>
+{% block content %}
 
-</div>
+{% endblock %}
+
 </body>
