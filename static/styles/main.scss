@@ -1,0 +1,21 @@
+$font-stack: 'Ubuntu', sans-serif;
+$primary-color: #C52233;
+
+body {
+  font: 100% $font-stack;
+}
+
+nav {
+  background-color: $primary-color;
+}
+
+nav {
+  a.navbar-brand {
+    font-size: 1.5em;
+    color: black;
+  }
+}
+
+#test {
+  color: orange;
+}

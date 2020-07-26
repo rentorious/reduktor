@@ -1,7 +1,18 @@
 body {
-    font-family: 'Ubuntu', sans-serif;
+  font: 100% "Ubuntu", sans-serif;
 }
 
 nav {
-    background-color: #C52233;
+  background-color: #C52233;
 }
+
+nav a.navbar-brand {
+  font-size: 1.5em;
+  color: black;
+}
+
+#test {
+  color: orange;
+}
+
+/*# sourceMappingURL=main.css.map */

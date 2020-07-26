@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <!-- <title>{% block title %}{% endblock %} - Reduktor</title> -->
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+    <title>{% block title %}{% endblock %} - Reduktor</title>
     <!--Bootstrap CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -23,15 +22,15 @@
           rel="stylesheet">
 
     <!-- My styles -->
-    <!-- <link href="../static/styles/main.css" rel="stylesheet"> -->
-    {{ url_for("static/styles", filename="main.css") }}
+    <link href="../static/styles/main.css" rel="stylesheet">
+    <!-- link href="{{ url_for("static", filename="styles/main.css") }}" rel="stylesheet"> -->
 </head>
 
 <body>
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="#">
-        <img src="{{ url_for('static/img', filename='brand.png') }}">
+        <img src="{{ url_for('static', filename='img/brand.png') }}" alt="brand image">
         REDUKTOR
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -66,7 +65,8 @@
     </div>
 </nav>
 
-<div>
 
+<div id="test">
+    TEST
 </div>
 </body>
