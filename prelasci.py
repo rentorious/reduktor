@@ -8,7 +8,7 @@ from flask import (
 bp = Blueprint('prelasci', __name__, url_prefix='/prelasci')
 
 
-@bp.route('/')#methods=('GET'))
+@bp.route('/')
 def index():
     return render_template('prelasci/index.php')
 
