@@ -21,14 +21,15 @@ nav a.navbar-brand {
   font-weight: bold;
 }
 
-#corner-logo {
-  position: fixed;
+#corner-logo-top {
+  position: absolute;
   z-index: 500;
   left: -60px;
   top: -60px;
   width: 175px;
   height: 175px;
   transform: rotate(80deg);
+  transition: all 0.5s ease-in-out;
 }
 
 .btn-coordinate {
@@ -42,30 +43,62 @@ nav a.navbar-brand {
   background-color: rgba(209, 209, 209, 0.3);
 }
 
-.btn-coordinate:active, .btn-coordinate:focus {
+.btn-coordinate:active, .btn-coordinate:focus, input:focus {
   outline: 0;
   box-shadow: 0 0 0 0.2rem #C52233;
 }
 
-.dropdown-menu {
+#system_selector {
+  margin-bottom: 10em;
+}
+#system_selector .dropdown-menu {
   width: 100%;
   font-size: 3em;
   background: transparent;
   border: none;
 }
-
-.dropdown-item {
+#system_selector .dropdown-item {
   text-align: center;
   color: #F0FFFF;
   font-size: 1em;
 }
-
-.dropdown-item:hover {
+#system_selector .dropdown-item:hover {
+  background-color: #C52233;
+}
+#system_selector .dropdown-item:active {
   background-color: #C52233;
 }
 
-.dropdown-item:active {
+#transform {
+  border-radius: 33px;
   background-color: #C52233;
+  color: #F0FFFF;
+  width: auto;
+  font-weight: bold;
+  font-size: 2em;
+  padding: 5px 20px;
+  margin-top: 2em;
+}
+
+textarea:focus,
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=datetime]:focus,
+input[type=datetime-local]:focus,
+input[type=date]:focus,
+input[type=month]:focus,
+input[type=time]:focus,
+input[type=week]:focus,
+input[type=number]:focus,
+input[type=email]:focus,
+input[type=url]:focus,
+input[type=search]:focus,
+input[type=tel]:focus,
+input[type=color]:focus,
+.uneditable-input:focus {
+  border-color: #C52233;
+  outline: 0 none;
+  box-shadow: 0 1px 1px rgba(249, 36, 164, 0.66) inset, 0 0 8px rgba(249, 36, 164, 0.66);
 }
 
 /*# sourceMappingURL=main.css.map */

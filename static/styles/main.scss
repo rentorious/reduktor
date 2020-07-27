@@ -6,7 +6,7 @@ $text-color: #F0FFFF;
 body {
   font: 100% $font-stack;
   background-color: $secondary-color;
-  color: $text_color;
+  color: $text-color;
 }
 
 ::selection {
@@ -27,17 +27,18 @@ nav {
   }
 }
 
-#corner-logo {
-  position: fixed;
+#corner-logo-top {
+  position: absolute;
   z-index: 500;
   left: -60px;
   top: -60px;
   width: 175px;
   height: 175px;
   transform: rotate(80deg);
+  transition: all 0.5s ease-in-out;
 }
 
-.btn-coordinate{
+.btn-coordinate {
   height: 200px;
   font-size: 4em;
   font-weight: bold;
@@ -48,32 +49,67 @@ nav {
   background-color: rgba(209, 209, 209, 0.3);
 }
 
-.btn-coordinate:active, .btn-coordinate:focus {
+.btn-coordinate:active, .btn-coordinate:focus, input:focus {
   outline: 0;
   box-shadow: 0 0 0 0.2rem $primary-color;
 }
 
-.dropdown-menu {
-  //background-color: rgba(209, 209, 209, 0.6);
-  width: 100%;
-  font-size: 3em;
-  background: transparent;
-  border: none;
+#system_selector {
+  margin-bottom: 10em;
 
-}
+  .dropdown-menu {
+    width: 100%;
+    font-size: 3em;
+    background: transparent;
+    border: none;
 
-.dropdown-item {
+  }
+
+  .dropdown-item {
     text-align: center;
-    color: $text_color;
+    color: $text-color;
     font-size: 1em;
+  }
+
+  .dropdown-item:hover {
+    background-color: $primary-color;
+  }
+
+  .dropdown-item:active {
+    background-color: $primary-color;
+  }
 }
 
-.dropdown-item:hover {
+#transform {
+  border-radius: 33px;
   background-color: $primary-color;
+  color: $text-color;
+  width: auto;
+  font-weight: bold;
+  font-size: 2em;
+  padding: 5px 20px;
+  margin-top: 2em;
 }
 
-.dropdown-item:active {
-  background-color: $primary-color;
+//FOCUS OUTLINE COLOR FIX
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: $primary-color;
+  outline: 0 none;
+
+  box-shadow: 0 1px 1px rgba(249, 36, 164, 0.66) inset, 0 0 8px rgba(249, 36, 164, 0.66);
 }
-
-

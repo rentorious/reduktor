@@ -3,7 +3,7 @@ from numpy import (
     arcsin, arccos, arctan2,
     pi
 )
-import helpers as hlp
+
 
 # ALL FUCNTIONS ACCEPT DESERIALIZED VALUES IN RADIANS
 
@@ -45,37 +45,72 @@ def loc_eql_to_hor(hour, dec, lat):
     else:
         azim = arctan2(sin_azim, cos_azim)
 
-    if azim < 0:
+    if azim and azim < 0:
         azim += 2 * pi
-    elif azim > 2 * pi:
+    elif azim and azim > 2 * pi:
         azim -= 2 * pi
 
     return azim, zen_dist
 
 
 def eql_loc_to_cel(hour, dec, star_time):
-    re = star_time - hour
+    ra = star_time - hour
 
-    return re, dec
+    if ra < 0:
+        ra += 2 * pi
+    elif ra > 2 * pi:
+        ra -= 2 * pi
+
+    return ra, dec
 
 
-def eql_cel_to_loc(re, dec, star_time):
-    hour = star_time - re
+def eql_cel_to_loc(ra, dec, star_time):
+    hour = star_time - ra
+
+    if hour < 0:
+        hour += 2 * pi
+    elif hour > 2 * pi:
+        hour -= 2 * pi
 
     return hour, dec
 
 
-def cel_eql_to_hor(re, dec, star_time, lat):
-    hour, dec = eql_cel_to_loc(re, dec, star_time)
+def cel_eql_to_hor(ra, dec, star_time, lat):
+    hour, dec = eql_cel_to_loc(ra, dec, star_time)
 
     azim, zen = loc_eql_to_hor(hour, dec, lat)
 
     return azim, zen
 
 
-def hor_to_cel_eql(azim, zen, star_time, lat):
+def hor_to_cel_eql(azim, zen_dist, star_time, lat):
     hour, dec = hor_to_loc_eql(azim, zen_dist, lat)
 
-    re, dec = eql_loc_to_cel(hour, dec, star_time)
+    ra, dec = eql_loc_to_cel(hour, dec, star_time)
 
-    return re, dec
+    return ra, dec
+
+
+# TODO: Implement Ecliptic coordinate system transformations
+def hor_to_ecl():
+    pass
+
+
+def ecl_to_hor():
+    pass
+
+
+def ecl_to_cel_eql():
+    pass
+
+
+def ecl_to_loc_eql():
+    pass
+
+
+def loc_eql_to_ecl():
+    pass
+
+
+def cel_eql_to_ecl():
+    pass

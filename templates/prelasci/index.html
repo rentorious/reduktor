@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% set active_page="koordinatni" %}
 
-
 {% block header %}
     <div class="container mx-auto" id="system_selector">
         <div class="row text-center">
@@ -13,9 +12,9 @@
                         Nebesko ekvatorski
 
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Mesno Ekvatorski</a>
-                        <a class="dropdown-item" href="#">Ekliptični</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="start-options">
+<!--                        <a class="dropdown-item" href="#">Mesno Ekvatorski</a>-->
+<!--                        <a class="dropdown-item" href="#">Ekliptički</a>-->
                     </div>
                 </div>
             </div>
@@ -31,9 +30,9 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Horizontski
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Mesno Ekvatorski</a>
-                        <a class="dropdown-item" href="#">Ekliptični</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="end-options">
+<!--                        <a class="dropdown-item" href="#">Mesno Ekvatorski</a>-->
+<!--                        <a class="dropdown-item" href="#">Ekliptički</a>-->
                     </div>
                 </div>
             </div>
@@ -42,30 +41,27 @@
 
     </div>
 {% endblock %}
-<div class="container">
-    <div class="row">
-        <div class="col-5">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Recipient's username"
-                       aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <span class="input-group-text" id="basic-addon2">@example.com</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-2">
-
-        </div>
-
-        <div class="col-5">
-
-        </div>
-
-    </div>
-</div>
 
 
 {% block content %}
-    <script src="{{ url_for("static", filename="scripts/prelasci.js") }}"></script>
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-5" id="inputBox">
+
+
+            </div>
+
+            <div class="col-2">
+
+            </div>
+
+            <div class="col-5" id="outputBox">
+
+            </div>
+
+        </div>
+    </div>
+
+    <button class="btn btn-lg btn-block btn-danger mx-auto" id="transform">TRANSFORMISI</button>
 {% endblock %}
