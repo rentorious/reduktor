@@ -22,14 +22,14 @@
           rel="stylesheet">
 
     <!-- My styles -->
-    <link href="{{ url_for("static", filename="styles/main.css") }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles/main.css') }}" rel="stylesheet">
 </head>
 
 <body>
+<!--Corner images-->
+<img src="{{ url_for('static', filename='img/brand.png') }}" id="corner-logo-top" alt="brand image">
+
 <!-- NAVBAR -->
-<img src="{{ url_for('static', filename='img/brand.png') }}" id="corner-logo" alt="brand image">
-
-
 <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="#">
         REDUKTOR
@@ -41,12 +41,9 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-            <a class="nav-link {{ 'active' if active_page == "koordinatni" else '' }}"
-               href="{{ url_for("prelasci.index") }}">
+            <a class="nav-link {{ 'active' if active_page == 'koordinatni' else '' }}"
+               href="{{ url_for('prelasci.index') }}">
                 Koordinatni sistemi </a>
-            <a class="nav-link {{ 'active' if active_page == "koodrinatni2" else '' }}"
-               href="{{ url_for("prelasci.index2") }}">
-                Koordinatni sistemi 2</a>
         </ul>
 
     </div>
@@ -56,5 +53,8 @@
 {% block content %}
 
 {% endblock %}
+<!-- my scripts -->
+<script src="{{ url_for('static', filename='scripts/prelasci.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/CoordSystem.js') }}"></script>
 
 </body>
