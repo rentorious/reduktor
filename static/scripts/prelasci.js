@@ -34,7 +34,7 @@ function init() {
     // setEvents(END, endOtherOptionsDiv)
 }
 
-function setEvents(where, optionsDiv) {
+function setEvens(where, optionsDiv) {
     options = optionsDiv.childNodes
 
     for (let option of options) {
