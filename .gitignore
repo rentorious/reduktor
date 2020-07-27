@@ -1,7 +1,5 @@
 venv/
 
-runtime.txt
-
 *.pyc
 __pycache__/
 
