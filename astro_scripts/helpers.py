@@ -147,7 +147,6 @@ def transform_system(data):
         star_time = deserialize(startData[STAR_TIME], hour=True)
         lat = deserialize(startData[LAT])
 
-        print(ra, dec, star_time, lat)
 
         # Check which system is chosen for output
         if endName == MESNO_EKVATORSKI:
@@ -206,7 +205,6 @@ def transform_system(data):
         if key == HOUR or key == RA or key == STAR_TIME:
             hour = True
 
-        print(key)
         result[key] = serialize(result[key], hour=hour)
 
     return result
