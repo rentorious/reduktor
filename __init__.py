@@ -1,6 +1,5 @@
 import os
-
-from flask import Flask
+from flask import Flask, redirect, url_for
 
 
 def create_app(test_config=None):
@@ -22,9 +21,9 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/hello')
+    @app.route('/')
     def hello():
-        return "Hell World"
+        return redirect(url_for('prelasci.index'))
 
     from . import prelasci
     app.register_blueprint(prelasci.bp)
