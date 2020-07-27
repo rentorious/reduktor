@@ -1,0 +1,82 @@
+astroid==2.4.1
+attrs==19.3.0
+backcall==0.1.0
+bleach==3.1.5
+brotlipy==0.7.0
+certifi==2020.6.20
+cffi==1.14.0
+chardet==3.0.4
+click==7.1.2
+cryptography==2.9.2
+cycler==0.10.0
+decorator==4.4.2
+defusedxml==0.6.0
+entrypoints==0.3
+Flask==1.1.2
+idna @ file:///tmp/build/80754af9/idna_1593446292537/work
+importlib-metadata @ file:///tmp/build/80754af9/importlib-metadata_1593446408836/work
+ipykernel==5.3.0
+ipython @ file:///tmp/build/80754af9/ipython_1593447368578/work
+ipython-genutils==0.2.0
+ipywidgets==7.5.1
+isort==4.3.21
+itsdangerous==1.1.0
+jedi==0.17.0
+Jinja2==2.11.2
+json5==0.9.5
+jsonschema @ file:///tmp/build/80754af9/jsonschema_1594363551272/work
+jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1594826976318/work
+jupyter-core==4.6.3
+jupyterlab==2.1.4
+jupyterlab-server @ file:///tmp/build/80754af9/jupyterlab_server_1594164409481/work
+kiwisolver==1.2.0
+lazy-object-proxy==1.4.3
+lxml==4.5.1
+MarkupSafe @ file:///tmp/build/80754af9/markupsafe_1594371495811/work
+matplotlib @ file:///tmp/build/80754af9/matplotlib-base_1592406090020/work
+mccabe==0.6.1
+mistune @ file:///tmp/build/80754af9/mistune_1594373098390/work
+mkl-fft==1.1.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+nbconvert @ file:///tmp/build/80754af9/nbconvert_1594376811065/work
+nbformat==5.0.6
+notebook==6.0.3
+numpy==1.15.4
+packaging==20.4
+pandocfilters==1.4.2
+parso==0.7.0
+pexpect @ file:///tmp/build/80754af9/pexpect_1594383317248/work
+pickleshare @ file:///tmp/build/80754af9/pickleshare_1594384075987/work
+ply==3.11
+prometheus-client==0.8.0
+prompt-toolkit==3.0.5
+ptyprocess==0.6.0
+pycodestyle==2.6.0
+pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+Pygments==2.6.1
+pylint==2.5.2
+pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1594392929924/work
+pyparsing==2.4.7
+pyrsistent==0.16.0
+PySocks @ file:///tmp/build/80754af9/pysocks_1594394576006/work
+python-dateutil==2.8.1
+pyzmq==19.0.1
+qtconsole==4.7.4
+QtPy==1.9.0
+requests @ file:///tmp/build/80754af9/requests_1592841827918/work
+Send2Trash==1.5.0
+six==1.15.0
+terminado==0.8.3
+testpath==0.4.4
+toml @ file:///tmp/build/80754af9/toml_1592853716807/work
+tornado==6.0.4
+traitlets==4.3.3
+typed-ast==1.4.1
+urllib3==1.25.9
+wcwidth==0.1.9
+webencodings==0.5.1
+Werkzeug==1.0.1
+widgetsnbextension==3.5.1
+wrapt==1.11.2
+zipp==3.1.0
