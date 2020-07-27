@@ -1,6 +1,5 @@
 astroid==2.4.1
 attrs==19.3.0
-autopep8 @ file:///tmp/build/80754af9/autopep8_1592412889138/work
 backcall==0.1.0
 bleach==3.1.5
 brotlipy==0.7.0
@@ -17,7 +16,7 @@ Flask==1.1.2
 idna @ file:///tmp/build/80754af9/idna_1593446292537/work
 importlib-metadata @ file:///tmp/build/80754af9/importlib-metadata_1593446408836/work
 ipykernel==5.3.0
-ipython==7.14.0
+ipython @ file:///tmp/build/80754af9/ipython_1593447368578/work
 ipython-genutils==0.2.0
 ipywidgets==7.5.1
 isort==4.3.21
