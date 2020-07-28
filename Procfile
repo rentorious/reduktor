@@ -1,1 +1,1 @@
-web: FLASK_APP=reduktor && python3 -m flask run
+web: python3 -m flask run -h localhost -p $PORT

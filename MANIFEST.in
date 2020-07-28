@@ -1,0 +1,3 @@
+graft reduktor/static
+graft reduktor/templates
+graft reduktor/astro_scripts
