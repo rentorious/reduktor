@@ -143,7 +143,7 @@ def transform_system(data):
     if startName == NEBESKO_EKVATORSKI:
         # Load and deserialize
         ra = deserialize(startData[RA], hour=True)
-        dec = deser1ialize(startData[DEC])
+        dec = deserialize(startData[DEC])
         star_time = deserialize(startData[STAR_TIME], hour=True)
         lat = deserialize(startData[LAT])
 
