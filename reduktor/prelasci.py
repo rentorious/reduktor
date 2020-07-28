@@ -1,9 +1,7 @@
-import functools
-from .astro_scripts import (
-    helpers as hlp
-)
+from reduktor.astro_scripts import helpers as hlp
+
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify
+    Blueprint, render_template, request, jsonify
 )
 
 bp = Blueprint('prelasci', __name__, url_prefix='/prelasci')

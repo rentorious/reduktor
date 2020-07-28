@@ -1,7 +1,6 @@
 from numpy import degrees as deg, radians
 import re
-import json
-import astro_scripts.transformations as trans
+import reduktor.astro_scripts.transformations as trans
 
 NEBESKO_EKVATORSKI = "Nebesko ekvatorski"
 MESNO_EKVATORSKI = "Mesno Ekvatorski"

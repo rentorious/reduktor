@@ -1,1 +1,1 @@
-web: FLASK_APP=__init__.py && python3 -m flask run
+web: FLASK_APP=reduktor && python3 -m flask run
