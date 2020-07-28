@@ -207,7 +207,10 @@ function transform() {
         .then(res => {
             // Fill in the results
             for (outputId in res) {
+                console.log(outputId)
+                console.log(res[outputId])
                 document.getElementById(outputId).value = res[outputId]
+                console.log(document.getElementById(outputId))
             }
         })
 }
