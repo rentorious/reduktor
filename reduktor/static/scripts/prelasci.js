@@ -205,6 +205,7 @@ function transform() {
             return data.json()
         })
         .then(res => {
+            res = JSON.parse(res)
             // Fill in the results
             for (outputId in res) {
                 console.log(outputId)

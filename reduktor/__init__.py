@@ -21,11 +21,14 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    from . import prelasci
+    app.register_blueprint(prelasci.bp)
+
+
     @app.route('/')
     def hello():
         return redirect(url_for('prelasci.index'))
 
-    from . import prelasci
-    app.register_blueprint(prelasci.bp)
+    print("HELLO THERE")
 
     return app

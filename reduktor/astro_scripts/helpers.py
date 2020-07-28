@@ -1,6 +1,7 @@
 from numpy import degrees as deg, radians
 import re
 import reduktor.astro_scripts.transformations as trans
+import json
 
 NEBESKO_EKVATORSKI = "Nebesko ekvatorski"
 MESNO_EKVATORSKI = "Mesno Ekvatorski"
@@ -206,4 +207,5 @@ def transform_system(data):
 
         result[key] = serialize(result[key], hour=hour)
 
-    return result
+    print(json.dumps(result))
+    return json.dumps(result)

@@ -1,1 +1,1 @@
-web: python3 -m flask run -h localhost -p $PORT
+web: gunicorn --bind 0.0.0.0:${PORT} reduktor:__init__
