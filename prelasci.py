@@ -1,5 +1,5 @@
 import functools
-from astro_scripts import (
+from .astro_scripts import (
     helpers as hlp
 )
 from flask import (
