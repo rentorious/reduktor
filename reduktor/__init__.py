@@ -29,6 +29,4 @@ def create_app(test_config=None):
     def hello():
         return redirect(url_for('prelasci.index'))
 
-    print("HELLO THERE")
-
     return app
