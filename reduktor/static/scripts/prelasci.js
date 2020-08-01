@@ -249,3 +249,8 @@ function andYetItMoves() {
     if (rotation > 1000)
         rotation = 80
 }
+
+// functions for nav form inputs
+document.getElementById("geoTopoSwitch").addEventListener("click", (e) => {
+    console.log(e.target.checked)
+})
