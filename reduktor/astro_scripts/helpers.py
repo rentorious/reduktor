@@ -129,74 +129,20 @@ def get_all_systems_info():
 # TODO: IMPLEMENT EQUATORIAL
 # Ovo ce biti pakleno
 def transform_system(data):
-    startName = data["startName"]
-    startData = data["startData"]
+    start_name = data["startName"]
+    start_data = data["startData"]
     endName = data["endName"]
 
     # Check if the names are valid
-    if startName not in system_informations or endName not in system_informations:
+    if start_name not in system_informations or endName not in system_informations:
         raise ValueError("Unknown coordinate system")
+
+    # Transform any coordinate system into Celestial equatorial
+    ra, dec = any_to_cel(start_name, start_data)
+
 
     result = {}
 
-    # Check all system transformation combinations
-    if startName == NEBESKO_EKVATORSKI:
-        # Load and deserialize
-        ra = deserialize(startData[RA], hour=True)
-        dec = deserialize(startData[DEC])
-        star_time = deserialize(startData[STAR_TIME], hour=True)
-        lat = deserialize(startData[LAT])
-
-
-        # Check which system is chosen for output
-        if endName == MESNO_EKVATORSKI:
-            result[HOUR], result[DEC] = trans.eql_cel_to_loc(ra, dec, star_time)
-        elif endName == HORIZONTSKI:
-            result[AZIM], result[ZEN_DIST] = trans.cel_eql_to_hor(ra, dec, star_time, lat)
-        elif endName == EKLIPTICKI:
-            result[E_LONG] = result[E_LAT] = 0
-    elif startName == MESNO_EKVATORSKI:
-        # load and deserialize
-        hour = deserialize(startData[HOUR], hour=True)
-        dec = deserialize(startData[DEC])
-        star_time = deserialize(startData[STAR_TIME], hour=True)
-        lat = deserialize(startData[LAT])
-
-        # Check which system is chosen for output
-        if endName == NEBESKO_EKVATORSKI:
-            result[RA], result[DEC] = trans.eql_loc_to_cel(hour, dec, star_time)
-        elif endName == HORIZONTSKI:
-            result[AZIM], result[ZEN_DIST] = trans.loc_eql_to_hor(hour, dec, lat)
-        elif endName == EKLIPTICKI:
-            result[E_LONG], result[E_LAT] = trans.loc_eql_to_ecl()
-    elif startName == HORIZONTSKI:
-        # load and deserialize
-        azim = deserialize(startData[AZIM])
-        zen_dist = deserialize(startData[ZEN_DIST])
-        star_time = deserialize(startData[STAR_TIME])
-        lat = deserialize(startData[LAT])
-
-        # Check which system is chosen for output
-        if endName == NEBESKO_EKVATORSKI:
-            result[RA], result[DEC] = trans.hor_to_cel_eql(azim, zen_dist, star_time, lat)
-        elif endName == MESNO_EKVATORSKI:
-            result[HOUR], result[DEC] = trans.hor_to_loc_eql(azim, zen_dist, lat)
-        elif endName == HORIZONTSKI:
-            result[E_LONG], result[E_LAT] = trans.hor_to_ecl()
-    elif startName == EKLIPTICKI:
-        # load and deserialize
-        e_long = deserialize(startData[E_LONG])
-        e_lat = deserialize(startData[E_LAT])
-        star_time = deserialize(startData[STAR_TIME], hour=True)
-        lat = deserialize(startData[LAT])
-
-        # Check which system is chosen for output
-        if endName == NEBESKO_EKVATORSKI:
-            result[RA], result[DEC] = trans.ecl_to_cel_eql()
-        elif endName == MESNO_EKVATORSKI:
-            result[HOUR], result[DEC] = trans.ecl_to_loc_eql()
-        elif endName == HORIZONTSKI:
-            result[AZIM], result[ZEN_DIST] = trans.ecl_to_hor()
 
     # Serialize the results
     for key in result:
@@ -209,3 +155,7 @@ def transform_system(data):
 
     print(json.dumps(result))
     return json.dumps(result)
+
+def any_to_cel(sys_name, sys_data):
+    star_time = sys_data[STAR_TIME]
+    lat = sys_data[LAT]
