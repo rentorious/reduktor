@@ -1,6 +1,4 @@
 {% extends 'base.html' %}
-{% set active_page="koordinatni" %}
-
 {% block header %}
     <div class="container mx-auto" id="system_selector">
         <div class="row text-center">
@@ -13,8 +11,6 @@
 
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="start-options">
-<!--                        <a class="dropdown-item" href="#">Mesno Ekvatorski</a>-->
-<!--                        <a class="dropdown-item" href="#">Ekliptički</a>-->
                     </div>
                 </div>
             </div>
@@ -31,8 +27,6 @@
                         Horizontski
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="end-options">
-<!--                        <a class="dropdown-item" href="#">Mesno Ekvatorski</a>-->
-<!--                        <a class="dropdown-item" href="#">Ekliptički</a>-->
                     </div>
                 </div>
             </div>
@@ -63,5 +57,5 @@
         </div>
     </div>
 
-    <button class="btn btn-lg btn-block btn-danger mx-auto" id="transform">TRANSFORMISI</button>
+
 {% endblock %}

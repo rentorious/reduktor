@@ -15,8 +15,8 @@ body {
 
 nav {
   background-color: $primary-color;
-  height: 70px;
-  font-size: 1.25em;
+  height: auto;
+  font-size: 1.5em;
   margin-bottom: 100px;
 
   a.navbar-brand {
@@ -81,14 +81,11 @@ nav {
 }
 
 #transform {
-  border-radius: 33px;
   background-color: $primary-color;
   color: $text-color;
-  width: auto;
   font-weight: bold;
-  font-size: 2em;
-  padding: 5px 20px;
-  margin-top: 2em;
+  border: 3px solid $text-color;
+  font-size: 1.1em;
 }
 
 //FOCUS OUTLINE COLOR FIX
