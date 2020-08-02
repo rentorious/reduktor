@@ -163,16 +163,16 @@ function fillInputs(where) {
 
     inputBox.innerHTML = ""
     for (let input of system.inputs) {
-        inputBox.innerHTML += makeInput(input)
+        inputBox.innerHTML += makeInput(where, input)
     }
 }
 
-function makeInput(name) {
+function makeInput(where, name) {
     const input = `
 
     <div class="input-group mb-4">
-        <input type="text" class="form-control" id="${name}"
-               aria-label="${name} name="${name}" aria-describedby="basic-addon2">
+        <input type="text" class="form-control" id="${where}-${name}"
+               aria-label="${where}-${name} name="${where}-${name}" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <span class="input-group-text" id="basic-addon2">${name}</span>
         </div>
@@ -223,7 +223,7 @@ function parseSystemInputs() {
 
 
     for (inputID of startSystem.inputs) {
-        let input = document.getElementById(inputID)
+        let input = document.getElementById(`start-${inputID}`)
 
         inputData[inputID] = input.value
     }
@@ -234,6 +234,8 @@ function parseSystemInputs() {
         startData: inputData,
         endName: endOptionText,
     }
+
+    console.log(data)
 
     return data
 }
