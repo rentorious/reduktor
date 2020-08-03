@@ -200,20 +200,20 @@ function transform() {
         method: "POST"
     }
 
-    fetch(url, params)
-        .then(data => {
-            return data.json()
-        })
-        .then(res => {
-            res = JSON.parse(res)
-            // Fill in the results
-            for (outputId in res) {
-                console.log(outputId)
-                console.log(res[outputId])
-                document.getElementById(outputId).value = res[outputId]
-                console.log(document.getElementById(outputId))
-            }
-        })
+    // fetch(url, params)
+    //     .then(data => {
+    //         return data.json()
+    //     })
+    //     .then(res => {
+    //         res = JSON.parse(res)
+    //         // Fill in the results
+    //         for (outputId in res) {
+    //             console.log(outputId)
+    //             console.log(res[outputId])
+    //             document.getElementById(outputId).value = res[outputId]
+    //             console.log(document.getElementById(outputId))
+    //         }
+    //     })
 }
 
 function parseSystemInputs() {
@@ -235,7 +235,7 @@ function parseSystemInputs() {
         endName: endOptionText,
     }
 
-    console.log(data)
+    console.log(data.startData)
 
     return data
 }

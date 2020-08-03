@@ -153,7 +153,6 @@ def transform_system(data, options):
     return result
 
 
-
 def any_to_cel(sys_name, sys_data):
     star_time = sys_data[STAR_TIME]
     lat = sys_data[LAT]
