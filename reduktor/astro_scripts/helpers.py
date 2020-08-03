@@ -83,6 +83,32 @@ def deserialize(angle_str, hour=False):
 
     return angle
 
+def serialize_dict(result_dict):
+    for key in result_dict:
+        hour = False
+        # check if angle should be serialized to hour values
+        if key == HOUR or key == RA or key == STAR_TIME:
+            hour = True
+
+        result_dict[key] = serialize(result_dict[key], hour=hour)
+
+    return json.dumps(result_dict)
+
+
+def deserialize_dict(dict_str):
+    new_dict = {}
+
+    print(dict_str)
+
+
+    for key in dict_str:
+        hour = False
+        if key == HOUR or key == STAR_TIME or key == RA:
+            hour = True
+
+        new_dict[key] = deserialize(dict_str[key], hour=hour)
+
+    return new_dict
 
 def from_hour(angle, serialized=False):
     if serialized:
@@ -133,25 +159,28 @@ def get_all_systems_info():
 def transform_system(data):
     options = data["options"]
     start_name = data["startName"]
-    start_data = data["startData"]
+    start_data = deserialize_dict(data["startData"])
     end_name = data["endName"]
-
-    print("THese are:", options)
-
     # Check if the names are valid
     if start_name not in system_informations or end_name not in system_informations:
         raise ValueError("Unknown coordinate system")
 
+    lat = start_data[LAT]
+    start_time = start_data[STAR_TIME]
+
     # Transform any coordinate system into Celestial equatorial
     ra, dec = any_to_cel(start_name, start_data)
+    print(ra, dec)
     # Adjust coordinates for nutation, precession...
-    ra, dec = adjust_to_now(ra, dec, options)
+    ra, dec = adjust_to_now(ra, dec, lat, options)
+    print(ra, dec)
     # Transform those coordinates to the output system
     result = cel_to_any(end_name, ra, dec, start_data)
 
 
     # Serialize the results
-    result = serialize_trans_result(result)
+    result = serialize_dict(result)
+
 
     return result
 
@@ -160,42 +189,43 @@ def any_to_cel(sys_name, sys_data):
     star_time = sys_data[STAR_TIME]
     lat = sys_data[LAT]
 
+    if sys_name == NEBESKO_EKVATORSKI:
+        return sys_data[RA], sys_data[DEC]
+    elif sys_name == MESNO_EKVATORSKI:
+        return trans.eql_loc_to_cel(sys_data[HOUR], sys_data[DEC], star_time)
+    elif sys_name == HORIZONTSKI:
+        return trans.hor_to_cel_eql(sys_data[AZIM], sys_data[ZEN_DIST], star_time, lat)
+    elif sys_name == EKLIPTICKI:
+        return trans.ecl_to_cel_eql()
+    else:
+        raise ValueError("Unknown coordinate system (any_to_cel)")
+
+
+def cel_to_any(sys_name, ra, dec, start_data):
     result = {}
 
     if sys_name == NEBESKO_EKVATORSKI:
-        result[RA] = sys_data[RA]
-        result[DEC] = sys_data[DEC]
+        result[RA] = ra
+        result[DEC] = dec
     elif sys_name == MESNO_EKVATORSKI:
-        result[HOUR], result[DEC] = trans.eql_loc_to_cel(sys_data[HOUR], sys_data[DEC], star_time)
+        result[HOUR], result[DEC] = trans.eql_cel_to_loc(ra, dec, start_data[STAR_TIME])
     elif sys_name == HORIZONTSKI:
-        result[AZIM], result[ZEN_DIST] = trans.hor_to_cel_eql(sys_data[AZIM], sys_data[ZEN_DIST], star_time, lat)
+        result[AZIM], result[ZEN_DIST] = trans.cel_eql_to_hor(ra, dec, start_data[STAR_TIME], start_data[LAT])
     elif sys_name == EKLIPTICKI:
-        result[E_LONG], result[E_LAT] = trans.ecl_to_cel_eql()
+        result[E_LONG], result[E_LAT] = trans.cel_eql_to_ecl()
     else:
-        raise ValueError("Unknown coordinate system (any_to_cel)")
+        raise ValueError("Unknown system (cel_to_any)")
 
     return result
 
 
-def cel_to_any(sys_name, ra, dec, start_data):
-    if sys_name == NEBESKO_EKVATORSKI:
-        return  ra, dec
-    if sys_name == MESNO_EKVATORSKI:
-        return trans.eql_cel_to_loc(ra, dec, start_data[STAR_TIME])
-    if sys_name == HORIZONTSKI:
-        return trans.cel_eql_to_hor(ra, dec, start_data[STAR_TIME], start_data[LAT])
-    if sys_name == EKLIPTICKI:
-        return trans.cel_eql_to_ecl()
-
-    raise ValueError("Unknown system (cel_to_any)")
-
-
-def adjust_to_now(ra, dec, options):
+def adjust_to_now(ra, dec, lat, options):
     if options[GEO_TOPO]:
-        r = options[GEO_TOPO]["r"]
-        h = options[GEO_TOPO]["h"]
-        lat = options[GEO_TOPO]["lat"]
-        lon = options[GEO_TOPO]["lon"]
+        geo_topo = deserialize_dict(options[GEO_TOPO])
+
+        r = geo_topo["r"]
+        h = geo_topo["h"]
+        lon = geo_topo["lon"]
 
         ra, dec = trans.geo_topo(ra, dec, r, lat, lon, h)
 
@@ -204,13 +234,4 @@ def adjust_to_now(ra, dec, options):
     return ra, dec
 
 
-def serialize_trans_result(result_dict):
-    for key in result_dict:
-        hour = False
-        # check if angle should be serialized to hour values
-        if key == HOUR or key == RA or key == STAR_TIME:
-            hour = True
 
-        result_dict[key] = serialize(result_dict[key], hour=hour)
-
-    return json.dumps(result_dict)

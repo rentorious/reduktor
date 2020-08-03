@@ -54,12 +54,9 @@ async function getSystemsData() {
         method: "POST"
     }
 
-    let sysData = fetch(url, params).then(response => {
+    return fetch(url, params).then(response => {
         return response.json()
     })
-
-
-    return sysData
 }
 
 function setNewOption(where, newOptionText) {
@@ -179,6 +176,8 @@ function transform() {
 
     let data = parseSystemInputs()
 
+    console.log(data)
+
 
     let url = "/prelasci/transformisi"
 
@@ -196,12 +195,11 @@ function transform() {
         })
         .then(res => {
             res = JSON.parse(res)
+            console.log("res: ")
+            console.log(res)
             // Fill in the results
-            for (outputId in res) {
-                console.log(outputId)
-                console.log(res[outputId])
-                document.getElementById(outputId).value = res[outputId]
-                console.log(document.getElementById(outputId))
+            for (let outputId in res) {
+                document.getElementById(`end-${outputId}`).value = res[outputId]
             }
         })
 }
@@ -211,7 +209,7 @@ function parseSystemInputs() {
 
     // User input data
     let inputData = {}
-    for (inputID of startSystem.inputs) {
+    for (let inputID of startSystem.inputs) {
         let input = document.getElementById(`start-${inputID}`)
 
         inputData[inputID] = input.value
@@ -260,6 +258,12 @@ function andYetItMoves() {
         rotation = 80
 }
 
+function resetNavOptions() {
+    document.getElementById("precesijaSwitch").checked = false
+    document.getElementById("nutacijaSwitch").checked = false
+    document.getElementById("geoTopoSwitch").checked = false
+}
+
 // functions for nav form inputs
 document.getElementById("geoTopoSwitch").addEventListener("click", (e) => {
     if (e.target.checked) {
@@ -279,8 +283,7 @@ document.getElementById("geoTopoSwitch").addEventListener("click", (e) => {
     }
 })
 
-function resetNavOptions() {
-    document.getElementById("precesijaSwitch").checked = false
-    document.getElementById("nutacijaSwitch").checked = false
-    document.getElementById("geoTopoSwitch").checked = false
-}
+window.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") transform()
+})
+
