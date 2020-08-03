@@ -34,18 +34,6 @@ function init() {
     // setEvents(END, endOtherOptionsDiv)
 }
 
-function setEvens(where, optionsDiv) {
-    options = optionsDiv.childNodes
-
-    for (let option of options) {
-        option.onclick = (e) => {
-            let node = e.target
-
-            setNewOption(where, node.innerText)
-        }
-    }
-}
-
 async function initSystems() {
     systems = await getSystemsData()
 
@@ -83,6 +71,8 @@ function setNewOption(where, newOptionText) {
         alert("WRONG!")
         return
     }
+
+    resetNavOptions()
 
     fillOtherOptions(END)
     fillOtherOptions(START)
@@ -200,42 +190,60 @@ function transform() {
         method: "POST"
     }
 
-    // fetch(url, params)
-    //     .then(data => {
-    //         return data.json()
-    //     })
-    //     .then(res => {
-    //         res = JSON.parse(res)
-    //         // Fill in the results
-    //         for (outputId in res) {
-    //             console.log(outputId)
-    //             console.log(res[outputId])
-    //             document.getElementById(outputId).value = res[outputId]
-    //             console.log(document.getElementById(outputId))
-    //         }
-    //     })
+    fetch(url, params)
+        .then(data => {
+            return data.json()
+        })
+        .then(res => {
+            res = JSON.parse(res)
+            // Fill in the results
+            for (outputId in res) {
+                console.log(outputId)
+                console.log(res[outputId])
+                document.getElementById(outputId).value = res[outputId]
+                console.log(document.getElementById(outputId))
+            }
+        })
 }
 
 function parseSystemInputs() {
     let startSystem = systems[startOptionText]
 
+    // User input data
     let inputData = {}
-
-
     for (inputID of startSystem.inputs) {
         let input = document.getElementById(`start-${inputID}`)
 
         inputData[inputID] = input.value
     }
 
+    // navbar options
+    precessionSwitch = document.getElementById("precesijaSwitch")
+    nutationSwitch = document.getElementById("nutacijaSwitch")
+    geoTopSwitch = document.getElementById("geoTopoSwitch")
+
+    options = {}
+    options.PREC = precessionSwitch.checked
+    options.NUT = nutationSwitch.checked
+    if (geoTopSwitch.checked) {
+        options.GEO_TOPO = {}
+
+        options.GEO_TOPO.lon = document.getElementById("start-longituda").value
+        options.GEO_TOPO.h = document.getElementById("start-visina").value
+        options.GEO_TOPO.r = document.getElementById("start-udaljenost").value
+    } else {
+        options.GEO_TOPO = false
+    }
 
     let data = {
         startName: startOptionText,
         startData: inputData,
         endName: endOptionText,
+        options: options
     }
 
-    console.log(data.startData)
+
+    console.log(options)
 
     return data
 }
@@ -254,5 +262,25 @@ function andYetItMoves() {
 
 // functions for nav form inputs
 document.getElementById("geoTopoSwitch").addEventListener("click", (e) => {
-    console.log(e.target.checked)
+    if (e.target.checked) {
+        console.log("HEY")
+        let startInputs = document.getElementById("inputBox")
+        startInputs.innerHTML += makeInput(START, "visina")
+        startInputs.innerHTML += makeInput(START, "longituda")
+        startInputs.innerHTML += makeInput(START, "udaljenost")
+    } else {
+        let visinaIn = document.getElementById("start-visina")
+        let longitudaIn = document.getElementById("start-longituda")
+        let udaljenost = document.getElementById("start-udaljenost")
+
+        visinaIn.parentElement.remove()
+        longitudaIn.parentElement.remove()
+        udaljenost.parentElement.remove()
+    }
 })
+
+function resetNavOptions() {
+    document.getElementById("precesijaSwitch").checked = false
+    document.getElementById("nutacijaSwitch").checked = false
+    document.getElementById("geoTopoSwitch").checked = false
+}
