@@ -26,12 +26,6 @@ document.getElementById("transform").addEventListener("click", transform)
 
 function init() {
     initSystems()
-
-
-    // // set onclick events for start
-    // setEvents(START, startOtherOptionsDiv)
-    // // set onclick events for end
-    // setEvents(END, endOtherOptionsDiv)
 }
 
 async function initSystems() {
@@ -129,6 +123,7 @@ function fillInputs(where) {
     let system = undefined
 
     if (where === START) {
+
         inputBox = startInputBox
         system = {
             name: startOptionText,
@@ -149,6 +144,13 @@ function fillInputs(where) {
     for (let input of system.inputs) {
         inputBox.innerHTML += makeInput(where, input)
     }
+
+    if (where == START) {
+        inputBox.children[0].children[0].select()
+
+    }
+
+
 }
 
 function makeInput(where, name) {
