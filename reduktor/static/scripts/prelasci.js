@@ -113,11 +113,8 @@ function fillOtherOptions(where) {
 }
 
 function makeOption(where, text) {
-    // return `<a class="dropdown-item" href="#" onclick="setNewOption(${where}, '${text}')">${text}</a>`
-
     let a = document.createElement("a")
     a.classList.add("dropdown-item")
-    a.setAttribute("href", "#")
     a.addEventListener("click", (e) => {
         setNewOption(where, text)
     })
