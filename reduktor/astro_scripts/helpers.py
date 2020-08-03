@@ -130,10 +130,13 @@ def get_all_systems_info():
 
 
 # Ovo ce biti pakleno
-def transform_system(data, options):
+def transform_system(data):
+    options = data["options"]
     start_name = data["startName"]
     start_data = data["startData"]
     end_name = data["endName"]
+
+    print("THese are:", options)
 
     # Check if the names are valid
     if start_name not in system_informations or end_name not in system_informations:
@@ -188,7 +191,7 @@ def cel_to_any(sys_name, ra, dec, start_data):
 
 
 def adjust_to_now(ra, dec, options):
-    if GEO_TOPO in options:
+    if options[GEO_TOPO]:
         r = options[GEO_TOPO]["r"]
         h = options[GEO_TOPO]["h"]
         lat = options[GEO_TOPO]["lat"]
