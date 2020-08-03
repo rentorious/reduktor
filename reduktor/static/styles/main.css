@@ -6,6 +6,7 @@ body {
 
 ::selection {
   background: #C52233;
+  color: #F0FFFF;
 }
 
 nav {

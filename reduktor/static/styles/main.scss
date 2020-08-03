@@ -3,6 +3,7 @@ $primary-color: #C52233;
 $secondary-color: #262626;
 $text-color: #F0FFFF;
 
+
 body {
   font: 100% $font-stack;
   background-color: $secondary-color;
@@ -11,6 +12,7 @@ body {
 
 ::selection {
   background: $primary-color;
+  color: $text-color;
 }
 
 nav {
