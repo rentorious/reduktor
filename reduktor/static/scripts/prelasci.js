@@ -169,6 +169,33 @@ function makeInput(where, name) {
 }
 
 
+function makeDate(where, name) {
+    const input = `
+
+    <div class="input-group mb-4">
+        <div class="row">
+            <div class="col-6">
+                <input type="date" class="form-control" id="${where}-${name}"
+                    aria-label="${where}-${name} name="${where}-${name}" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon2">${name}</span>
+                </div>
+            </div>
+            <div class="col-6">
+                <input type="time" class="form-control" id="${where}-${name}-vreme"
+                    aria-label="${where}-${name} name="${where}-${name}-vreme" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon2">vreme</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    `
+
+    return input
+}
+
+
 function transform() {
     // Spin astro logo
     andYetItMoves()
@@ -220,8 +247,17 @@ function parseSystemInputs() {
     geoTopSwitch = document.getElementById("geoTopoSwitch")
 
     options = {}
-    options.PREC = precessionSwitch.checked
-    options.NUT = nutationSwitch.checked
+    if (precessionSwitch.checked) {
+        options.PREC = {}
+        options.PREC.date = document.getElementById("start-datum").value
+        options.PREC.time = document.getElementById("start-datum-vreme").value
+    }
+    if (nutationSwitch.checked) {
+        options.NUT = {}
+        options.NUT.date = document.getElementById("start-datum").value
+        options.NUT.time = document.getElementById("start-datum-vreme").value
+    
+    }
     if (geoTopSwitch.checked) {
         options.GEO_TOPO = {}
 
@@ -279,6 +315,40 @@ document.getElementById("geoTopoSwitch").addEventListener("click", (e) => {
         visinaIn.parentElement.remove()
         longitudaIn.parentElement.remove()
         udaljenost.parentElement.remove()
+    }
+})
+
+// PRECESIJA SWITCH
+document.getElementById("precesijaSwitch").addEventListener("click", (e) => {
+    if (e.target.checked) {
+        console.log("PRECESIJA ON")
+
+        if (document.getElementById("nutacijaSwitch").checked)
+            return;
+        let startInputs = document.getElementById("inputBox")
+        startInputs.innerHTML += makeDate(START, "datum")
+    } else {
+        if (document.getElementById("nutacijaSwitch").checked)
+            return;
+        let datumIn = document.getElementById("start-datum");
+        datumIn.parentElement.remove();
+    }
+})
+
+// NUTACIJA SWITCH
+document.getElementById("nutacijaSwitch").addEventListener("click", (e) => {
+    if (e.target.checked) {
+        console.log("NUTACIJA ON")
+
+        if (document.getElementById("precesijaSwitch").checked)
+            return;
+        let startInputs = document.getElementById("inputBox")
+        startInputs.innerHTML += makeDate(START, "datum")
+    } else {
+        if (document.getElementById("precesijaSwitch").checked)
+            return;
+        let datumIn = document.getElementById("start-datum");
+        datumIn.parentElement.remove();
     }
 })
 

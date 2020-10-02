@@ -20,6 +20,8 @@ AZIM = "azimut"
 ZEN_DIST = "zenitksa daljina"
 
 GEO_TOPO = "GEO_TOPO"
+NUT = "NUT"
+PREC = "PREC"
 
 system_informations = {
     NEBESKO_EKVATORSKI: {
@@ -229,7 +231,14 @@ def adjust_to_now(ra, dec, lat, options):
 
         ra, dec = trans.geo_topo(ra, dec, r, lat, lon, h)
 
-    # TODO: Implement nutation, precession and abberation
+    if PREC in options:
+        date = options[PREC]["date"] + " " + options[PREC]["time"] + ":00";
+        ra, dec = trans.precession(ra, dec, date)
+
+    if NUT in options:
+        date = options[NUT]["date"] + " " + options[NUT]["time"] + ":00";
+        ra, dec = trans.nutation(ra, dec, date)
+        
 
     return ra, dec
 
