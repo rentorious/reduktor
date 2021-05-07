@@ -5,7 +5,7 @@
 
 ### Javascript i Flask (python)
 
-### (Live Demo)[http://reduktor.herokuapp.com/]
+### [Live Demo](http://reduktor.herokuapp.com/)
 
 #### Program trenutno podržava:
 - Nebesko ekvatorski, mesno ekvatorski i horizontski koordinatni sistem kao i prelaske sa bilo kog na bilo koji
