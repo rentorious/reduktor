@@ -3,6 +3,10 @@
 
 ### Ovaj projekat je program za redukciju kordinata sa ciljem za što kvalitetnije posmatranje nebeskih tela.
 
+### Javascript i Flask (python)
+
+### (Live Demo)[http://reduktor.herokuapp.com/]
+
 #### Program trenutno podržava:
 - Nebesko ekvatorski, mesno ekvatorski i horizontski koordinatni sistem kao i prelaske sa bilo kog na bilo koji
 - Prelazak za geocentričnih na topocentrične koordinate, kao i obrnut prelaz
